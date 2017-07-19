@@ -47,8 +47,8 @@ void ForceStop(MotorInfo *leftInfo , MotorInfo *rightInfo)
 
 void Calculation(AngleSpeed *MainInfo , MotorInfo *leftMotor , MotorInfo *rightMotor)
 {
-    int x =0;
-    int y =0;
+    float x =0.0;
+    float y =0.0;
 
       if( MainInfo->Speed == 0 )
      {
@@ -57,8 +57,8 @@ void Calculation(AngleSpeed *MainInfo , MotorInfo *leftMotor , MotorInfo *rightM
 
    if(MainInfo->previousSpeed != MainInfo->Speed){
     MainInfo->previousSpeed = MainInfo->Speed;
-    leftMotor->delay = 2000 / MainInfo->Speed;
-    rightMotor->delay = 2000 / MainInfo->Speed;
+    leftMotor->delay = 6000 / MainInfo->Speed;
+    rightMotor->delay = 6000 / MainInfo->Speed;
    }
 
    if(MainInfo->previousAngle != MainInfo->Angle)
@@ -68,19 +68,21 @@ void Calculation(AngleSpeed *MainInfo , MotorInfo *leftMotor , MotorInfo *rightM
       {
       leftMotor -> dir = MOTOR_LEFT_FOWARD ;
       rightMotor -> dir = MOTOR_RIGHT_FOWARD;
-      x = MainInfo->Angle /180;
-      y = 1 - (MainInfo->Angle/180);
-      leftMotor -> delay = (leftMotor->delay * y);
-      rightMotor -> delay = ( rightMotor->delay * x);
+      x = (float) (MainInfo->Angle /180.0);
+      y = (float) (1 - (MainInfo->Angle/180.0));
+      printf("x = %f \n",x);
+      printf("y = %f \n",y);
+      leftMotor -> delay = (unsigned long)(leftMotor->delay * x);
+      rightMotor -> delay = (unsigned long)( rightMotor->delay * y);
       }
     else if( 180 < MainInfo->Angle && MainInfo->Angle <= 360)
       {
       leftMotor -> dir = MOTOR_LEFT_BACKWARD;
       rightMotor -> dir = MOTOR_RIGHT_BACKWARD;
-      x = MainInfo->Angle /360;
-      y = 1 - (MainInfo->Angle/360);
-      leftMotor -> delay = y * leftMotor->delay;
-      rightMotor -> delay = x * rightMotor->delay;
+      x = (float)(MainInfo->Angle /360.0);
+      y = (float)(1 - (MainInfo->Angle/360.0));
+      leftMotor -> delay = (unsigned long)(y * leftMotor->delay);
+      rightMotor -> delay = (unsigned long)(x * rightMotor->delay);
       }
     }
   }

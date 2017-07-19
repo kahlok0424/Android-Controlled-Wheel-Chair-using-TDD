@@ -36,7 +36,7 @@ void test_maincode_calculation(void)
 
     AngleSpeed Maininfo = {
       10,
-      270,
+      300,
       5,
       0,
     };
@@ -46,8 +46,8 @@ void test_maincode_calculation(void)
     Calculation(&Maininfo,&leftMotorInfo,&rightMotorInfo);
     printf("Delay_left = %d \n",leftMotorInfo.delay);
     printf("Delay_right = %d \n",rightMotorInfo.delay);
-    TEST_ASSERT_EQUAL(200, rightMotorInfo.delay);
-    TEST_ASSERT_EQUAL(200, leftMotorInfo.delay);
+    TEST_ASSERT_EQUAL(500, rightMotorInfo.delay);
+    TEST_ASSERT_EQUAL(100, leftMotorInfo.delay);
 }
 
 void test_maincode_old_calculation(void)
