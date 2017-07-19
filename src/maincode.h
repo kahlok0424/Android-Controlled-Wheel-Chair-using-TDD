@@ -14,8 +14,8 @@ typedef struct AngleSpeed AngleSpeed;
 struct  AngleSpeed {
   int Speed;
   int Angle;
-  int previousAngle;
   int previousSpeed;
+  int previousAngle;
 };
 
 typedef struct MotorInfo MotorInfo;

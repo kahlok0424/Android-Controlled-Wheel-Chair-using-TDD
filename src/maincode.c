@@ -70,8 +70,8 @@ void Calculation(AngleSpeed *MainInfo , MotorInfo *leftMotor , MotorInfo *rightM
       rightMotor -> dir = MOTOR_RIGHT_FOWARD;
       x = MainInfo->Angle /180;
       y = 1 - (MainInfo->Angle/180);
-      leftMotor -> delay = y *leftMotor->delay;
-      rightMotor -> delay = x *rightMotor->delay;
+      leftMotor -> delay = (leftMotor->delay * y);
+      rightMotor -> delay = ( rightMotor->delay * x);
       }
     else if( 180 < MainInfo->Angle && MainInfo->Angle <= 360)
       {
@@ -79,8 +79,8 @@ void Calculation(AngleSpeed *MainInfo , MotorInfo *leftMotor , MotorInfo *rightM
       rightMotor -> dir = MOTOR_RIGHT_BACKWARD;
       x = MainInfo->Angle /360;
       y = 1 - (MainInfo->Angle/360);
-      leftMotor -> delay = y *leftMotor->delay;
-      rightMotor -> delay = x *rightMotor->delay;
+      leftMotor -> delay = y * leftMotor->delay;
+      rightMotor -> delay = x * rightMotor->delay;
       }
     }
   }
